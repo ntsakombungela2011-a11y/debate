@@ -3,7 +3,6 @@ package com.jules.debate.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,7 +15,7 @@ import com.jules.debate.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Composable
 fun DebateApp() {
@@ -34,7 +33,7 @@ fun DebateApp() {
         val apiService = Retrofit.Builder()
             .baseUrl("https://generativelanguage.googleapis.com/")
             .client(client)
-            .addConverterFactory(com.squareup.retrofit2.converter.gson.GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(GeminiApiService::class.java)
 
